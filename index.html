@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>netixplay.app</title>
+    <link rel="stylesheet" href="./bootstrap-5.2.1-dist/css/bootstrap.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.2/font/bootstrap-icons.css"/>
+    <style>
+        body {
+            background-color: black;
+            font-family: "Lato", sans-serif;
+        }
+        .hero {
+            background-color: rgb(255, 149, 0);
+            min-height: 87vh;
+            position: relative;
+            overflow: hidden;   
+        }
+        .macbook {
+            height: 85%;
+            position: absolute;
+            right: 65%;
+            top: 10%;
+        }
+        .phone-top {
+            height: 40%;
+            position: absolute;
+            left: 18%;
+            bottom: 65%;
+        }
+        .ipad {
+            position: absolute;
+            height: 95%;
+            left: 75%;
+            bottom: 15%;
+        }
+        .phone-bottom {
+            position: absolute;
+            height: 80%;
+            top: 65%;
+            left: 65%;
+        }
+        .forward {
+            position: absolute;
+            width: 50%;
+            top: 24%;
+            left: 30%;
+            min-height: 55%;
+        }
+        .trending {
+            margin-top: -30px;
+            position: relative;
+            z-index: 1;
+        }
+        .the-a {
+            color: rgb(255, 149, 0);
+            text-decoration: none;
+        }
+        .the-image {
+            height: 20rem;
+        }
+
+        .number {
+            width: 2rem;
+            height: 2rem;
+            background-color: rgb(255, 149, 0);
+            z-index: 5;
+            text-align: center;
+            color: white;
+        }
+        .play {
+            z-index: 6;
+            top: 36%;
+            left: 45%;
+            cursor: pointer;
+            font-size: 45px;
+            font-weight: bolder;
+            transition: 1s ease;
+        }
+        .play:hover {
+            transform: rotate(360deg);
+        }
+        .card-holder {
+            width: max-content;
+        }
+
+        @media only screen and (max-width: 770px) {
+            .forward {
+                /* position: relative; */
+                text-align: center;
+                width: 100%;
+                min-height: 55%;
+                top: 5%;
+                left: 0%;
+            }
+            .main-nav {
+                width: 80%;
+            }
+            .hero {
+                min-height: 50vh;
+            }
+        }
+        @media only screen and (min-width: 771px) {
+            .main-nav {
+                width: 100%;
+            }
+        }
+        .sidenav {
+            height: 100%;width: 0;position: fixed;z-index: 1;top: 0;left: 0;
+            background-color: #111;overflow-x: hidden;transition: 0.5s;padding-top: 60px;
+        }
+        .sidenav a {
+            padding: 8px 8px 8px 32px;text-decoration: none;font-size: 25px;
+            color: #818181;display: block;transition: 0.3s;
+        }
+        .sidenav a:hover {color: #f1f1f1;}
+        .sidenav .closebtn {
+            position: absolute;
+            top: 0;right: 25px;
+            font-size: 36px;margin-left: 50px;
+        }
+        @media screen and (max-height: 450px) {
+        .sidenav {padding-top: 15px;}
+        .sidenav a {font-size: 18px;}
+        }
+        #artistName{font-size: 20px;font-weight: 900;}
+    </style>
+</head>
+<body id="mainBody" onload="proceed()">
+    <!-- // MAIN NAVIGATION -->
+    <nav class="navbar w-100 d-flex flex-row sticky-top navbar-expand-lg bg-dark py-0">
+        <span class=" px-3" style="font-size:40px;cursor:pointer;background-color: #FFA200;" onclick="openNav()">&#9776;</span>
+        <!-- SIDENAVIGATION -->
+        <div id="mySidenav" class="sidenav mt-5">
+            <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+            <img class="ms-4" src="./images/logo.png" alt="Logo" width="50vw" height="50vh" class=""><span class="" style="font: 25px Roboto,sans-serif;color: #FFA200;"> NETIXPLAY</span>
+            <a href="index.html">Home</a>
+            <a href="index.html">New</a>
+            <a href="#" onclick="popularSongs()">Popular</a>
+            <a href="#">Recents</a>
+        </div>
+        <div class="container-fluid ms-auto ms-md-0 main-nav">
+            <img src="./images/mark-orange.png" class="mx-2" style="height: 25px" alt=""/>
+            <a class="navbar-brand text-light fw-bolder fs-4 pe-2" href="#">NETIXPLAY</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation" >
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <form class="d-none d-md-flex align-items-center mx-auto px-2 rounded-pill" role="search"
+                style="width: 450px; background-color: rgb(51, 51, 51)">
+                <div class="input-group">
+                    <button class="bg-transparent border-0" type="button" id="button-addon2">
+                        <i class="bi bi-search fs-4" style="color: #FFA200;"></i>
+                    </button>
+                    <input type="text" class="form-control fw-bold fs-6 shadow-none text-light bg-transparent border-0 outline-0" placeholder="Search For artist, songs,albums!" aria-label="Recipient's username" aria-describedby="button-addon2"/>
+            </div>
+            </form>
+            <div class="ms-auto">
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0 align-items-center">
+                        <li class="nav-item">
+                            <a class="nav-link active fw-bolder"  style="font-size: 12px;color: #FFA200;" aria-current="page" href="#">Sign In</a>
+                        </li>
+                        <li class="nav-item text-light fs-6">/</li>
+                        <li class="nav-item">
+                            <a class="nav-link active fw-bolder" style="font-size: 12px;color: #FFA200;" aria-current="page" href="#">Sign Up</a>
+                        </li>
+                        <li class="nav-item mx-3">
+                            <a class="nav-link active fs-3 fw-bolder" aria-current="page" href="#">
+                                <i class="bi bi-person-circle" style="color: rgb(56, 74, 98)"></i>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a>
+                                <button class="btn fw-bolder px-3 text-white" style="background-color: #FFA200;border-radius: 29px;">
+                                    <i class="bi bi-cloud-upload"></i> Upload
+                                </button>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </nav>
+    <!-- HERO SECTION -->
+    <section class="hero">
+        <img src="./images/create-macbook@2x.png" class="macbook d-none d-md-block" alt=""/>
+        <img src="./images/create-phone-top@2x.png" class="phone-top d-none d-md-block" alt=""/>
+        <img src="./images/create-ipad@2x.png" class="ipad d-none d-md-block" alt="" />
+        <img src="./images/create-phone-bottom@2x.png" class="phone-bottom d-none d-md-block" alt=""/>
+        <div class="container forward text-light">
+            <h1 class="fw-bolder text-center">
+            NETIXPLAY is here to <br />
+            move music forward
+            </h1>
+            <p class="text-center" style="font-size: 22px">
+            Netixplay is a <strong>FREE</strong>, limitless music sharing and
+            discovery platform for
+            <strong class="">artists, tastemakers, labels and fans.</strong>
+            </p>
+            <div class="d-flex gap-3 mx-auto mt-4" style="width: max-content">
+                <button class="btn d-flex px-2 py-0 gap-2">
+                    <img src="./images/app-store-badge.png" alt="">
+                </button>
+                <button class="btn d-flex px-2 py-0 gap-2">
+                    <img src="./images/google-play-badge.png" alt="">
+                </button>
+            </div>
+            <h6 class="text-center mt-4 fw-bolder">EXPLORE FEATURES FOR:</h6>
+            <ul class="d-flex gap-3 fw-bold justify-content-center" style="list-style: none">
+                <li>
+                    <a href="" class="text-light" style="text-decoration: none"
+                    >Artists</a>
+                </li>
+                <li>
+                    <a href="" class="text-light" style="text-decoration: none">Listeners</a>
+                </li>
+                <li>
+                    <a href="" class="text-light" style="text-decoration: none">Labels</a>
+                </li>
+                <li>
+                    <a href="" class="text-light" style="text-decoration: none">Podcasters</a>
+                </li>
+            </ul>
+        </div>
+    </section>
+    <div class="container w- trending bg-dark text-light d-flex flex-column flex-md-row justify-content-center 
+         align-items-center ps-4 pe-3 py-3" style="width: 87vw;">
+        <div class="d-flex align-items-center">
+            <h4><i class="bi bi-graph-up-arrow text-warning"></i></h4>
+            <h2 id="trend" class="ps-4">Now Trending</h2>
+        </div>
+
+        <div class="d-flex align-items-center gap-2 ms-md-auto pe-2">
+            <h5>Cartegory:</h5>
+            <span>
+                <button onclick="newSongs()" class="fw-bold rounded-pill bg-warning px-2 py-2 fw-bold text-white">
+                        New
+                </button>
+                <button onclick="popularSongs()" class="text-white rounded-pill bg-warning px-1 py-2 fw-bold fw-bold">
+                    Popular
+                </button>
+                <button class="rounded-pill bg-warning px-1 py-2 fw-bold fw-bold text-white">
+                    Playlist
+                </button>
+            </span>
+        </div>
+    </div>
+    <div id="loading"></div>
+    <section class="container mt-3 p-2">
+        <div class="container">
+            <div class="row row-cols-1 row-cols-lg-4 g-1 g-lg-5 justify-content-center" id="cards"></div>
+        </div>
+    </section>
+
+
+    <script>
+        function openNav() {
+            document.getElementById("mySidenav").style.width = "250px";
+        }
+        function closeNav() {
+            document.getElementById("mySidenav").style.width = "0";
+            document.getElementById("mainBody").style.marginLeft = "0";
+        }
+        
+        const endpoint = " https://musica-api.up.railway.app/new"
+        const endpointPopular = " https://musica-api.up.railway.app/popular"
+        let isLoading = true
+        const proceed = async ()=>{
+            if (isLoading) {
+                loading.innerHTML=`<img src="loading.gif"/>`
+                }
+            // To make a request
+            let response = await fetch(endpoint)
+            // To convert it to JSON  
+            let convertedResponse = await response.json()
+            console.log(convertedResponse)
+            isLoading = false
+            loading.innerHTML=" "
+            convertedResponse.map((item, index) => {
+                cards.innerHTML += `
+                <div class="col card-holder position-relative mb-3" >
+                    <div class="position-absolute number "><strong>${index +1}</strong></div>
+                    <a href="${item.audio}"><i class="bi bi-play-circle position-absolute play text-success" style="font-size:100px;" onclick="" id="player"></i></a>
+                    <div class="card"  style="width: 20rem">
+                        <img src="${item.cover}" class="card-img-top the-image" id="the-image" alt="..." />
+                        <div class="card-body text-start">
+                            <h5 class="card-title">${item.artist}</h5>
+                            <h4 class="card-text">${item.title}</h4>
+                            <h5>By <a href="#" class="the-a">${item.artist}</a></h5>
+                            <h5>${item.duration}</h5>
+                        </div>
+                    </div>
+                </div>`
+            })
+        }
+        const newSongs = async ()=>{
+            window.location="index.html"
+        }
+        const popularSongs = async ()=>{
+            if (isLoading) {
+                loading.innerHTML=`<img src="loading.gif"/>`
+            }
+            cards.innerHTML=""
+            // To make a request
+            let responsePop = await fetch(endpointPopular)
+            // To convert it to JSON  
+            let convertedResponsePop = await responsePop.json()
+            console.log(convertedResponsePop)
+            isLoading = false
+            loading.innerHTML=" "
+            convertedResponsePop.map((item, index) => {
+                if (isLoading) {
+                loading.innerHTML=`<img src="loading.gif"/>`
+                }
+                isLoading = false
+                loading.innerHTML=" "
+                cards.innerHTML += `
+                <div class="col card-holder position-relative" >
+                    <div class="position-absolute number "><strong>${index +1}</strong></div>
+                    <a href="${item.audio}"><i class="bi bi-play-circle position-absolute play text-success" style="font-size:100px;" onclick="" id="player"></i></a>
+                    <div class="card"  style="width: 20rem">
+                        <img src="${item.cover}" class="card-img-top the-image" id="the-image" alt="..." />
+                        <div class="card-body text-start">
+                            <h5 class="card-title">${item.artist}</h5>
+                            <h4 class="card-text">${item.title}</h4>
+                            <h5>By <a href="#" class="the-a">${item.artist}</a></h5>
+                            <h5>${item.duration}</h5>
+                        </div>
+                    </div>
+                </div>`
+            })
+        }
+    </script>
+</body>
+</html> 
